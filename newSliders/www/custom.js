@@ -25,7 +25,8 @@ function padZeros(n, digits) {
 // custom slowSliderInput with longer delay
 ////////////////////
 
-var customDelay = Number(document.getElementById("ratepolicy").getAttribute("data-delay")); 
+
+// var customDelay = Number(document.getElementById("ratepolicy").getAttribute("data-delay")); 
 
  var slowSliderInputBinding = new Shiny.InputBinding();
 $.extend(slowSliderInputBinding, {

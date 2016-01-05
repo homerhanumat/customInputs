@@ -4,11 +4,15 @@ library(htmltools) #for htmlDependency
 # custom inputs are defined here:
 source("globals.R")
 
+code <- HTML('var customDelay = 1500;')
+
 basicPage(
   # experiment with letting user set the ratepolicy in a div:
-  HTML('<div id = "ratepolicy" data-delay = "1500"></div'),
+  # HTML('<div id = "ratepolicy" data-delay = "1500"></div'),
+  # nah, this is a better approach:
+  singleton(tags$head(tags$script(code))),
   # this script determines the behavior of the custom inputs:
-  singleton(tags$body(tags$script(src = "custom.js"))),
+  singleton(tags$head(tags$script(src = "custom.js"))),
   title = "Inputs with Limited Update-Properties",
   h2("Slow Sliders"),
   p("These sliders wait a bit before updating."),
@@ -24,7 +28,7 @@ basicPage(
   p("This input updates when you press enter or shift focus."),
   slowNumericInput(inputId = "input3", label = "Slow Numeric",value = 0),
   verbatimTextOutput("out3"),
-  h2("Codependecny"),
+  h2("Codependency"),
   p("Application to a problem posed by Weicheng Zhu:"),
   sliderInput("slider", NULL, 0, 100, 0),
   slowNumericInput("num", NULL, 0)
